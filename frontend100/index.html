@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Login</title>
+  <link rel="stylesheet" href="style.css" />
+  <meta http-equiv="Cache-Control" content="no-store" />
+  <meta http-equiv="Pragma" content="no-cache" />
+</head>
+<body>
+  <div class="container">
+    <h2>Login</h2>
+    <form id="loginForm">
+      <input type="email" id="email" placeholder="Email" required />
+      <input type="password" id="password" placeholder="Password" required />
+      <button type="submit">Login</button>
+    </form>
+    <p>Don't have an account? <a href="signup.html">Signup</a></p>
+    <p id="message"></p>
+  </div>
+
+  <script>
+    // Redirect if already logged in
+    function getCookie(name) {
+      const value = document.cookie.match("(^|;)\\s*" + name + "\\s*=\\s*([^;]+)");
+      return value ? value.pop() : "";
+    }
+
+    const token = getCookie("token");
+    if (token) {
+      try {
+        const payload = JSON.parse(atob(token.split('.')[1]));
+        if (payload.exp * 1000 > Date.now()) {
+          window.location.href = payload.role === "admin" ? "admin-home.html" : "user-home.html";
+        } else {
+          document.cookie = "token=; Max-Age=0";
+        }
+      } catch {
+        document.cookie = "token=; Max-Age=0";
+      }
+    }
+
+    document.getElementById("loginForm").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+
+      const res = await fetch("http://localhost:5003/api/auth/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password })
+      });
+
+      const data = await res.json();
+      if (data.token) {
+        document.cookie = `token=${data.token}; path=/`;
+        const payload = JSON.parse(atob(data.token.split('.')[1]));
+        window.location.href = payload.role === "admin" ? "admin-home.html" : "user-home.html";
+      } else {
+        document.getElementById("message").textContent = data.message || "Login failed.";
+      }
+    });
+  </script>
+</body>
+</html>

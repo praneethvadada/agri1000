@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register </title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <div class="container">
+        <!-- Registration Form -->
+        <div class="form-container" id="register-form">
+            <h2>Register for smart Agriculture</h2>
+            <form action="#" method="POST">
+                <label for="full-name">Full Name</label>
+                <input type="text" id="full-name" name="full-name" required placeholder="Enter your full name">
+
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="email" required placeholder="Enter your email">
+
+                <label for="phone">Phone Number</label>
+                <input type="tel" id="phone" name="phone" required placeholder="Enter your phone number">
+
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required placeholder="Create a password">
+
+                <label for="confirm-password">Confirm Password</label>
+                <input type="password" id="confirm-password" name="confirm-password" required placeholder="Confirm your password">
+
+                <button type="submit" class="submit-btn">Register</button>
+            </form>
+            <p>Already have an account? <a href="#" onclick="toggleForms()">Login here</a></p>
+        </div>
+
+        <!-- Login Form -->
+        <div class="form-container" id="login-form">
+            <h2>Login to Agriculture Portal</h2>
+            <form action="#" method="POST">
+                <label for="login-email">Email Address</label>
+                <input type="email" id="login-email" name="login-email" required placeholder="Enter your email">
+
+                <label for="login-password">Password</label>
+                <input type="password" id="login-password" name="login-password" required placeholder="Enter your password">
+
+                <button type="submit" class="submit-btn">Login</button>
+            </form>
+            <p>Don't have an account? <a href="#" onclick="toggleForms()">Register here</a></p>
+        </div>
+    </div>
+
+    <script>
+        function toggleForms() {
+            const registerForm = document.getElementById("register-form");
+            const loginForm = document.getElementById("login-form");
+
+            // Toggle visibility between forms
+            if (registerForm.style.display === "none") {
+                registerForm.style.display = "block";
+                loginForm.style.display = "none";
+            } else {
+                registerForm.style.display = "none";
+                loginForm.style.display = "block";
+            }
+        }
+
+        // Initialize form visibility
+        document.getElementById("register-form").style.display = "block";
+        document.getElementById("login-form").style.display = "none";
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maize Services</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Maize Services</h1>
+        </div>
+    </header>
+
+    <section class="intro">
+        <div class="container">
+            <h2>Welcome to Our Maize Services</h2>
+            <p>Whether you're a farmer, supplier, or consumer, we provide comprehensive solutions for all things maize. From cultivation to processing and delivery, we offer a range of services designed to help you grow, harvest, process, and enjoy the best maize products.</p>
+            <img src="maize.jpeg" alt="Maize Field" class="intro-img"> 
+        </div>
+    </section>
+
+    <section id="services" class="services">
+        <div class="container2">
+            <h2>Our Services</h2>
+
+            <!-- Maize Cultivation Consultation Service -->
+            <div class="service">
+                <h3>Maize Cultivation Consultation</h3>
+                <img src="maize 2.jpeg" alt="Maize Cultivation" class="service-img">
+                <p>Expert advice and consultation services for growing maize, including soil testing, seed selection, irrigation, and pest management.</p>
+                <h4>Price: ₹11,000 per consultation</h4>
+                <h4>Uses:</h4>
+                <ul>
+                    <li>Improved soil quality</li>
+                    <li>Enhanced seed selection</li>
+                    <li>Better water and pest management</li>
+                </ul>
+            </div>
+
+            <!-- Maize Seed Supply Service -->
+            <div class="service">
+                <h3>Maize Seed Supply</h3>
+                <img src="maize 3.jpeg" alt="Maize Seeds" class="service-img">
+                <p>High-quality maize seeds for all types of farming needs, from hybrid varieties to non-GMO and organic options.</p>
+                <h4>Price: ₹3,700 per kg</h4>
+                <h4>Uses:</h4>
+                <ul>
+                    <li>Better yield potential</li>
+                    <li>Higher resistance to pests</li>
+                    <li>Suitable for different climates and soils</li>
+                </ul>
+            </div>
+
+            <!-- Maize Harvesting Service -->
+            <div class="service">
+                <h3>Maize Harvesting Services</h3>
+                <img src="maize 4.jpeg"Maize Harvesting" class="service-img">
+                <p>Assistance with harvesting, drying, grading, and storage solutions to ensure your maize is preserved and ready for market.</p>
+                <h4>Price: ₹7,500 per acre</h4>
+                <h4>Uses:</h4>
+                <ul>
+                    <li>Maximized yield from harvest</li>
+                    <li>Improved storage conditions</li>
+                    <li>Optimal drying for long-term preservation</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Graph Section -->
+    <section id="pricing" class="pricing">
+        <div class="container">
+            <h2>Pricing Overview</h2>
+            <canvas id="pricingChart" width="400" height="200"></canvas>
+            <h4>Note: Prices are estimated per service. Custom pricing may apply based on the scale and location of services.</h4>
+        </div>
+    </section>
+
+    
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Maize Services | All Rights Reserved</p>
+        </div>
+    </footer>
+
+    <script>
+        // Pricing Graph using Chart.js (in INR)
+        var ctx = document.getElementById('pricingChart').getContext('2d');
+        var pricingChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Cultivation Consultation', 'Seed Supply', 'Harvesting'],
+                datasets: [{
+                    label: 'Price in INR',
+                    data: [11000, 3700, 7500], // Prices in INR
+                    backgroundColor: ['#4CAF50', '#8BC34A', '#FF9800'],
+                    borderColor: ['#388E3C', '#689F38', '#F57C00'],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

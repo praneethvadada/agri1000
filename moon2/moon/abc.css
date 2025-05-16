@@ -1,0 +1,48 @@
+.destination-card {
+  display: inline-block;
+  width: 30%;
+  height: 10%;
+  padding-bottom: 30px;
+  margin: 0 10px 30px;
+  background-color: #f4f4f4;
+  border-radius: 10px;
+  overflow: hidden;
+  text-align: center;
+  
+}
+
+.destination-card img {
+  width: 300px;
+  height: 300px;
+}
+.destination-card button{
+  width: 20px;
+  height: 20px;
+}
+.destination-card h1 {
+  padding: 20px 0;
+  text-decoration: solid;
+  font-size:30px;
+  color: black;
+}
+  
+
+.destination-card h2 {
+  padding: 20px 0;
+  text-decoration: solid;
+  color:black;
+  font-size:30px;
+  
+}
+
+.destination-card h3 {
+  padding: 20px 0;
+  color: black;
+  font-size:30px;
+}
+
+.destination-card p {
+  padding: 20px;
+  font-size: 1.1em;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
