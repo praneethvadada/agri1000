@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Profile</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f8f8f8;
+      padding: 20px;
+    }
+    .profile-container {
+      max-width: 400px;
+      margin: auto;
+      background: #fff;
+      padding: 30px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      border-radius: 8px;
+    }
+    h2 {
+      text-align: center;
+    }
+    .field {
+      margin: 10px 0;
+    }
+    .label {
+      font-weight: bold;
+    }
+    #logoutBtn {
+      display: block;
+      margin-top: 20px;
+      background-color: #a445f7;
+      color: white;
+      border: none;
+      padding: 10px;
+      width: 100%;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    #logoutBtn:hover {
+      background-color: #822dd9;
+    }
+  </style>
+</head>
+<body>
+  <div class="profile-container">
+    <h2>User Profile</h2>
+    <div class="field"><span class="label">ID:</span> <span id="id"></span></div>
+    <div class="field"><span class="label">Name:</span> <span id="name"></span></div>
+    <div class="field"><span class="label">Email:</span> <span id="email"></span></div>
+    <div class="field" id="roleField" style="display: none;">
+      <span class="label">Role:</span> <span id="role"></span>
+    </div>
+    <div class="field" id="createdAtField" style="display: none;">
+      <span class="label">Created At:</span> <span id="createdAt"></span>
+    </div>
+    <button id="logoutBtn">Logout</button>
+  </div>
+
+  <script>
+    // Get token from cookies
+    function getTokenFromCookie() {
+      const match = document.cookie.match(new RegExp('(^| )token=([^;]+)'));
+      return match ? match[2] : null;
+    }
+
+    async function loadProfile() {
+      const token = getTokenFromCookie();
+      if (!token) {
+        alert("Token missing. Please log in again.");
+        window.location.href = "index.html";
+        return;
+      }
+
+      try {
+        const response = await fetch("http://localhost:5003/api/auth/profile", {
+          method: "GET",
+          headers: {
+            "Authorization": "Bearer " + token
+          }
+        });
+
+        if (!response.ok) {
+          throw new Error("Failed to fetch profile.");
+        }
+
+        const data = await response.json();
+        document.getElementById("id").textContent = data.id;
+        document.getElementById("name").textContent = data.name;
+        document.getElementById("email").textContent = data.email;
+
+        if (data.role) {
+          document.getElementById("roleField").style.display = "block";
+          document.getElementById("role").textContent = data.role;
+        }
+
+        if (data.created_at) {
+          document.getElementById("createdAtField").style.display = "block";
+          document.getElementById("createdAt").textContent = new Date(data.created_at).toLocaleString();
+        }
+
+      } catch (err) {
+        console.error(err);
+        alert("Error loading profile. Please log in again.");
+        document.cookie = "token=; path=/; Max-Age=0;";
+        window.location.href = "index.html";
+      }
+    }
+
+    document.getElementById("logoutBtn").addEventListener("click", function () {
+      document.cookie = "token=; path=/; Max-Age=0;";
+      window.location.href = "index.html";
+    });
+
+    // Load profile on page load
+    loadProfile();
+  </script>
+</body>
+</html>
