@@ -13,3 +13,16 @@ CREATE TABLE users (
 
 
 ALTER TABLE users ADD COLUMN role ENUM('user', 'admin') NOT NULL DEFAULT 'user';
+
+
+
+praneeth@Praneeth-ka-MacBook-Air backend100 % curl -X POST http://localhost:5003/api/auth/signup \
+  -H "Content-Type: application/json" \
+  -d '{
+    "name": "Admin Guy",
+    "email": "admin@example.com",
+    "password": "admin123",
+    "role": "admin"
+}'
+
+{"message":"User registered successfully as admin”}
