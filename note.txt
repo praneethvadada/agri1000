@@ -26,3 +26,24 @@ praneeth@Praneeth-ka-MacBook-Air backend100 % curl -X POST http://localhost:5003
 }'
 
 {"message":"User registered successfully as admin”}
+
+
+
+
+User Profile
+
+praneeth@Praneeth-ka-MacBook-Air backend100 % curl -X GET http://localhost:5003/api/auth/profile \
+  -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Mywicm9sZSI6InVzZXIiLCJpYXQiOjE3NDczNjg0OTcsImV4cCI6MTc0NzM3MjA5N30.IVSfkknIBtUzZCUDPbfS9_AQ90tS0rQKaWCZ3F9rQDE"
+{"id":3,"name":"Regular User”,"email":"user@example.com"}
+
+
+
+
+
+Admin Profile
+
+praneeth@Praneeth-ka-MacBook-Air backend100 % curl -X GET http://localhost:5003/api/auth/profile \   
+  -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzQ3MzY4ODYzLCJleHAiOjE3NDczNzI0NjN9.3h5Ez0bivOYWphICHkfJ2LpcS6ule7dwXpYtoXp__H0"
+{"id":2,"name":"Admin Guy","email":"admin@example.com","role":"admin","created_at":"2025-05-16T04:05:18.000Z"}%                     
+
+
